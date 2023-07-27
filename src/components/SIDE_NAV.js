@@ -3,6 +3,7 @@ import React from "react";
 import { Typography } from "@mui/material";
 import { Box, Stack } from "@mui/system";
 import { motion } from 'framer-motion'
+import { Link } from "react-router-dom";
 function SIDE_NAV(props) {
   const list = ["Home", "Profile", "Settings", "Exit"];
   return (
@@ -28,7 +29,9 @@ function SIDE_NAV(props) {
       spacing={10}
       >
         {list.map((item) => (
-          <Typography variant="h4" key={item}color={'whitesmoke'}>{item}</Typography>
+         <Link key={item} to= {item.toLowerCase()} >
+          <Typography variant="h4" color={'whitesmoke'}>{item}</Typography>
+          </Link>
         ))}
       </Stack>
     </Box>
