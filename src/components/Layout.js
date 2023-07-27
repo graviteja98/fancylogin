@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { Suspense, useState } from "react";
 import SIDE_NAV from "./SIDE_NAV";
 import { AnimatePresence, motion } from "framer-motion";
 import { Box } from "@mui/system";
 import TOP_NAV from "./TOP_NAV";
 import { useMediaQuery } from "@mui/material";
-import { Routes, Route, Outlet, Link } from "react-router-dom";
+import { Outlet } from "react-router";
+import CircularProg from "./CircularProg";
+
 function Layout(props) {
   const isSmallScreen = useMediaQuery("(max-width:600px)");
   const [isOpen, setIsOpen] = useState(false);
@@ -19,10 +21,10 @@ function Layout(props) {
             mb: 0,
           }}
         >
+        
           <TOP_NAV vis={isSmallScreen} setO={setIsOpen} />
         </Box>
       </motion.div>
-
       {isSmallScreen ? (
         isOpen ? (
           <AnimatePresence>
@@ -49,7 +51,14 @@ function Layout(props) {
           <SIDE_NAV vis={isSmallScreen} />
         </motion.div>
       )}
-      <Outlet />
+       <Box
+          sx={{
+            ml: isSmallScreen ? 0 : "12%",
+            mt : '12%',
+          }}
+        >
+           <Suspense fallback={<CircularProg/>}><Outlet/></Suspense></Box>
+  
     </>
   );
 }
