@@ -2,7 +2,6 @@ import React from 'react';
 import { motion } from 'framer-motion';
 
 const CircularProg = ({ progress, strokeWidth, radius }) => {
-  const circumference = 2 * Math.PI * radius;
   const transition = { duration: 3, ease: "easeInOut" };
   return (
     <div className="container">
